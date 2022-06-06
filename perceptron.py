@@ -5,6 +5,8 @@ class Perceptron:
         self.w = -1 + 2 * np.random.rand(n)
         self.b = -1 + 2 * np.random.rand()
         self.eta = learnign_rate
+        self.converged = False
+        self.epochs = 0
 
     def pw(self, z):
         return 1 if z >= 0 else 0
@@ -23,12 +25,15 @@ class Perceptron:
                     self.w += self.eta * error * X[:,i]
                     self.b += self.eta * error
             epoch += 1
-        
-        return done
+            
+        self.converged = done
+        self.epochs = epoch
 
     def get_w(self):
         return self.w
 
-
-
+    def hasConverged(self):
+        return self.converged
     
+    def epochsReached(self):
+        return self.epochs
