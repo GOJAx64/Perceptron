@@ -32,6 +32,9 @@ class Perceptron:
     def get_w(self):
         return self.w
 
+    def get_b(self):
+        return self.b
+
     def hasConverged(self):
         return self.converged
     
