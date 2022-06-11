@@ -96,14 +96,10 @@ class Window:
         while(x <= XU):
             y = XL
             while y <= XU:
-                point = np.dot(self.neuron.get_w(), np.array([x,y])) + self.neuron.get_b() 
-                if self.neuron.pw(point):
+                if self.neuron.pw(self.neuron.net(np.array([x,y]))):
                     self.cartesian_plane.plot(x,y, color=(0, 0.6, 0, 0.1), marker='o')
                 else:
                     self.cartesian_plane.plot(x,y, color=(1, 0.6, 0, 0.1), marker='o')
                 y += STEP
             x += STEP
         self.window.canvas.draw()
-
-if __name__ == '__main__':
-    Window()

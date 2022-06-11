@@ -8,8 +8,11 @@ class Perceptron:
         self.converged = False
         self.epochs = 0
 
-    def pw(self, z):
+    def pw(self, z): #predict
         return 1 if z >= 0 else 0
+
+    def net(self, X):
+        return np.dot(self.w, X) + self.b
 
     def fitness(self, X, Y, epochs):
         done = False
@@ -19,7 +22,7 @@ class Perceptron:
         while(not done and epoch < epochs):
             done = True
             for i in range(p):
-                error = Y[i] - self.pw(np.dot(self.w, X[:,i]) + self.b)
+                error = Y[i] - self.pw(self.net(X[:,i]))
                 if error != 0:
                     done = False
                     self.w += self.eta * error * X[:,i]
